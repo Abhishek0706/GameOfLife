@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class planeScript : MonoBehaviour
 {
+    public float speed;
     public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -14,6 +15,6 @@ public class planeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector3(0, 8, 0);
+        rb.velocity = new Vector3(0, speed, 0);
     }
 }

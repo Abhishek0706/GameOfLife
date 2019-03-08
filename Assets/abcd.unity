@@ -215,6 +215,8 @@ MonoBehaviour:
   material5: {fileID: 2100000, guid: 7bc7508dd7585714da408ca2d9cc93f0, type: 2}
   material6: {fileID: 2100000, guid: de9ca824be93b964eb21c329db5e550c, type: 2}
   light: {fileID: 429739745}
+  zoom: 0.005
+  speed: 7
 --- !u!1 &429739745
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,4 +408,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c8bbf8c8a4e8a49bc28e34ef008fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 8
   rb: {fileID: 1121413052}

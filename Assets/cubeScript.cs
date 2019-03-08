@@ -10,7 +10,9 @@ public class cubeScript : MonoBehaviour
     Vector3 v = new Vector3(33 / 2, 0, 33 / 2);
     public Material material1,material2,material3,material4,material5,material6;
     public GameObject light;
-    
+    public float zoom;
+    public float speed;
+    Vector3 center = new Vector3(33 / 2, 0, 33 / 2);
     static float layer = 1;
     int[,] T = new int[33,33]{
        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -93,7 +95,7 @@ public class cubeScript : MonoBehaviour
     {
         
         Vector3 add = new Vector3(0, 20, 0);
-        transform.RotateAround(v, Vector3.up, 15 * Time.deltaTime);
+        transform.RotateAround(v, Vector3.up, 10 * Time.deltaTime);
         light.transform.position = transform.position + add;
         light.transform.rotation = transform.rotation;
         GameObject cube;
@@ -101,16 +103,30 @@ public class cubeScript : MonoBehaviour
 
         if (Input.GetKey("left"))
         {
-            transform.RotateAround(v, Vector3.up, -50 * Time.deltaTime);
+            transform.RotateAround(v, Vector3.up, -40 * Time.deltaTime);
         }
         if (Input.GetKey("right"))
         {
             transform.RotateAround(v, Vector3.up, 20 * Time.deltaTime);
         }
+        if (Input.GetKey("down"))
+        {
+            transform.Rotate(Vector3.right * Time.deltaTime * 20, Space.Self);
+        }
         if (Input.GetKey("up"))
         {
-            transform.RotateAround(v, Vector3.up, 20 * Time.deltaTime);
+            transform.Rotate(Vector3.right * Time.deltaTime * -20, Space.Self);
         }
+        if (Input.GetKey("w"))
+        {
+            transform.position -= zoom * (transform.position - center);
+            
+        }
+        if (Input.GetKey("s"))
+        {
+            transform.position += zoom * (transform.position - center);
+        }
+
         if (Time.time >= layer && Time.time < layer + Time.deltaTime)
         {
             int a = Random.Range(1, 7);
@@ -127,19 +143,19 @@ public class cubeScript : MonoBehaviour
                         cube.transform.localScale = new Vector3(.9f,.9f,.9f);
                         cubeBody = cube.AddComponent<Rigidbody>();
                         cubeBody.detectCollisions = false;
-                        cubeBody.velocity = new Vector3(0, 8, 0);
+                        cubeBody.velocity = new Vector3(0, speed, 0);
                         
                         cubeBody.useGravity = false;
-                        if (i*j<=181) { cube.GetComponent<Renderer>().material = material1; }
-                        if (i*j>181&&i*j<=362) { cube.GetComponent<Renderer>().material = material2; }
-                        if (i*j>362&& i*j<=543) { cube.GetComponent<Renderer>().material = material3; }
-                        if (i*j>543&&i*j<=724) { cube.GetComponent<Renderer>().material = material4; }
-                        if (i*j>724&&i*j<=905) { cube.GetComponent<Renderer>().material = material5; }
-                        if (i*j>905) { cube.GetComponent<Renderer>().material = material6; }
+                        if (i*j<=90) { cube.GetComponent<Renderer>().material = material1; }
+                        if (i*j>90&&i*j<=200) { cube.GetComponent<Renderer>().material = material2; }
+                        if (i*j>200&& i*j<=400) { cube.GetComponent<Renderer>().material = material3; }
+                        if (i*j>400&&i*j<=600) { cube.GetComponent<Renderer>().material = material4; }
+                        if (i*j>600&&i*j<=805) { cube.GetComponent<Renderer>().material = material5; }
+                        if (i*j>805) { cube.GetComponent<Renderer>().material = material6; }
                     }
                 }
             }
-            layer += 0.125f;
+            layer +=1/speed;
             int count;
 
             for (int i = 1; i < n - 1; i++)
