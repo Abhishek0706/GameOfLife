@@ -152,13 +152,13 @@ public class cubeScript : MonoBehaviour
                         cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                         cube.transform.position = new Vector3(i, 0, j);
                         cube.transform.localScale = new Vector3(.9f,.9f,.9f);
-                        /*cubeBody = cube.AddComponent<Rigidbody>();
+                        cubeBody = cube.AddComponent<Rigidbody>();
                         cubeBody.detectCollisions = false;
-                        cubeBody.velocity = new Vector3(0, speed, 0);*/
+                        cubeBody.velocity = new Vector3(0, speed, 0);
                         cube.AddComponent<TimeBomb>();
                         
                         
-                        //cubeBody.useGravity = false;
+                        cubeBody.useGravity = false;
                         if (i*j<=90) { cube.GetComponent<Renderer>().material = material1; }
                         if (i*j>90&&i*j<=200) { cube.GetComponent<Renderer>().material = material2; }
                         if (i*j>200&& i*j<=400) { cube.GetComponent<Renderer>().material = material3; }
