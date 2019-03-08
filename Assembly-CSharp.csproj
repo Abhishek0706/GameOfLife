@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\cubeScript.cs" />
     <Compile Include="Assets\planeScript.cs" />
+    <Compile Include="Assets\TimeBomb.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Abhishek Patil/Unity/Game OfLife/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

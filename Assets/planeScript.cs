@@ -5,16 +5,16 @@ using UnityEngine;
 public class planeScript : MonoBehaviour
 {
     public float speed;
-    public Rigidbody rb;
+    Transform t;
     // Start is called before the first frame update
     void Start()
     {
-        
+        t = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector3(0, speed, 0);
+        t.position = t.position - Vector3.down * Time.deltaTime * speed;
     }
 }

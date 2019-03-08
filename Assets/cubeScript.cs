@@ -111,11 +111,12 @@ public class cubeScript : MonoBehaviour
         {
             transform.RotateAround(v, Vector3.up, 20 * Time.deltaTime);
         }
-        if (Input.GetKey("down"))
+        Debug.Log(Vector3.Dot(transform.forward, Vector3.up));
+        if (Input.GetKey("down")&& Vector3.Dot(transform.forward,Vector3.up)<.74)
         {
             transform.Rotate(Vector3.right * Time.deltaTime * 20, Space.Self);
         }
-        if (Input.GetKey("up"))
+        if (Input.GetKey("up") && Vector3.Dot(transform.forward, Vector3.up) > -.74)
         {
             transform.Rotate(Vector3.right * Time.deltaTime * -20, Space.Self);
         }
@@ -124,16 +125,16 @@ public class cubeScript : MonoBehaviour
             transform.position -= zoom * (transform.position - center);
             
         }
-        if (Input.GetKey("s"))
+        if (Input.GetKey("s")&& (transform.position - center).magnitude<70)
         {
             transform.position += zoom * (transform.position - center);
         }
-        if (Input.GetKey("d"))
+        if (Input.GetKey("d")&&transform.position.y<30)
         {
 
             transform.Translate(vertical, Space.World);
         }
-        if (Input.GetKey("e"))
+        if (Input.GetKey("e")&& transform.position.y>-30)
         {
             transform.Translate(-vertical, Space.World);
         }
@@ -151,11 +152,13 @@ public class cubeScript : MonoBehaviour
                         cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                         cube.transform.position = new Vector3(i, 0, j);
                         cube.transform.localScale = new Vector3(.9f,.9f,.9f);
-                        cubeBody = cube.AddComponent<Rigidbody>();
+                        /*cubeBody = cube.AddComponent<Rigidbody>();
                         cubeBody.detectCollisions = false;
-                        cubeBody.velocity = new Vector3(0, speed, 0);
+                        cubeBody.velocity = new Vector3(0, speed, 0);*/
+                        cube.AddComponent<TimeBomb>();
                         
-                        cubeBody.useGravity = false;
+                        
+                        //cubeBody.useGravity = false;
                         if (i*j<=90) { cube.GetComponent<Renderer>().material = material1; }
                         if (i*j>90&&i*j<=200) { cube.GetComponent<Renderer>().material = material2; }
                         if (i*j>200&& i*j<=400) { cube.GetComponent<Renderer>().material = material3; }
