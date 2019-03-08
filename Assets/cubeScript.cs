@@ -8,6 +8,8 @@ public class cubeScript : MonoBehaviour
     // Start is called before the first frame update
     int n = 33;
     Vector3 v = new Vector3(33 / 2, 0, 33 / 2);
+   public Vector3 vertical = new Vector3(0, .3f, 0);
+    
     public Material material1,material2,material3,material4,material5,material6;
     public GameObject light;
     public float zoom;
@@ -126,7 +128,15 @@ public class cubeScript : MonoBehaviour
         {
             transform.position += zoom * (transform.position - center);
         }
+        if (Input.GetKey("d"))
+        {
 
+            transform.Translate(vertical, Space.World);
+        }
+        if (Input.GetKey("e"))
+        {
+            transform.Translate(-vertical, Space.World);
+        }
         if (Time.time >= layer && Time.time < layer + Time.deltaTime)
         {
             int a = Random.Range(1, 7);
